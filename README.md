@@ -25,7 +25,7 @@ The algorithm was customized to meet the manpower requirements of the Department
 
 Additionally, a runner system is in place, where extra MOs function as 'runners' to provide assistance to the rounding teams. One of the runners is responsible for assisting with the afternoon exercise stress echocardiogram (TTE) clinic on weekdays. During weekends, there is always at least one runner available to assist with rounding duties. To fulfill the manpower needs for weekend rounds, each weekend or public holiday would need at least four MOs on rounding duties. There is no afternoon duties on weekends and public holidays.
 
-Furthermore, there is a designated MO on-call, essentially covering overnight shifts. Post-call, the MO is required to run the same-day admission (SDA) clinic the following morning and take the afternoon off as 'post-call' on weekdays. In general, the department would receive ten MOs during each rotation cycle, with a maximum allowance of two MOs on leave at any given time.
+Furthermore, there is a designated MO on-call, essentially covering overnight shifts. Post-call, the MO is required to run the same-day admission (SDA) clinic the following morning and take the afternoon off as 'post-call' on weekdays. In general, the department would receive ten MOs during each rotation cycle, with a maximum allowance of two MOs on leave at any given time. The manpower requirement is summarized into Table 1.
 
 Table 1: Summary of the SKH Department of Cardiology's manpower requirements, detailing the number of MOs assigned to general wards (T1 and T2) , high dependency units / coronary care units (T3), and clinics during weekdays, weekends, and public holidays.
 
