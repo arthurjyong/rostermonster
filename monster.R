@@ -61,7 +61,6 @@ for (cycle_no in 1:num_iteration){
 
   # Write out the output to date to cache
   current_timestamp <- format(Sys.time(), "%y%m%d_%H%M%S")
-  print("bugs below here")
   saveRDS(parallel_output_roster_list, file.path(porl_dir, paste0(current_timestamp,".rds")))
 
   cycle_end_time <- Sys.time()
