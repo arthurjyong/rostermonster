@@ -151,11 +151,11 @@ subfn_roster_2_worksheet <- function(input_roster, index){
 }
 
 wb <- createWorkbook()
-mapply(subfn_roster_2_worksheet, shortlisted_roster_HC_filter, seq_along(shortlisted_roster), SIMPLIFY = FALSE)
+mapply(subfn_roster_2_worksheet, shortlisted_roster_HC_filter, seq_along(shortlisted_roster_HC_filter), SIMPLIFY = FALSE)
 saveWorkbook(wb, file.path(getwd(), new_dir, "full_roster_HC_filter.xlsx"), overwrite = TRUE)
 
 wb <- createWorkbook()
-mapply(subfn_roster_2_worksheet, shortlisted_roster_lowest_AMOC, seq_along(shortlisted_roster), SIMPLIFY = FALSE)
+mapply(subfn_roster_2_worksheet, shortlisted_roster_lowest_AMOC, seq_along(shortlisted_roster_lowest_AMOC), SIMPLIFY = FALSE)
 saveWorkbook(wb, file.path(getwd(), new_dir, "full_roster_lowest_AMOC.xlsx"), overwrite = TRUE)
 
 end_time <- Sys.time()
