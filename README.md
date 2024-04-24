@@ -83,7 +83,6 @@ _Figure 7: (Left) The concept of Average MO Count (AMOC) is demonstrated, showin
 
 With both SD and AMOC metrics at our disposal, we can more accurately appraise each automatically generated roster for implementation. Since SD and AMOC values can be derived independently for each full roster, it allows users to decide which metric should carry more weight in their decision-making process. To illustrate the distribution of SD and AMOC across the 200,000 rosters generated, we plotted them on a scatter plot, using a random sample of 3,000 values for better visibility (Figure 8). Ideally, rosters towards the bottom-left corner are sought after, as they reflect a more equitable workload distribution and better continuity of care.
 
-![Figure 8](/readme/figure8.png)
 <p align="center">
 <img src="/readme/figure8.png" alt="Figure 8" width="650">
 </p>
@@ -92,14 +91,16 @@ _Figure 8: Scatter plot displaying the relationship between Standard Deviation (
 
 ## Discussion
 
-Student projects on doctors' rostering
+Rostering duties, while laborious and time-consuming, are essential for the smooth operation of any clinical department. Typically, MO rostering is assigned to one of the medical officers, which can significantly distract them from their primary responsibilities. Furthermore, this task recurs monthly, compounding the challenge. It's often impractical to expect the entire team to schedule their absences and leave three to six months in advance. Adjustments to the call roster to accommodate urgent leave can also lead to major shifts in call burden and call point distribution, sometimes requiring further alterations to subsequent calls to ensure a fair workload distribution. In this project, we custom-built a rostering algorithm aimed at automating the process to the greatest extent possible. Our goal was to craft an algorithm that is user-friendly, which led us to select an Excel document as the sole input file. All subsequent calculations are performed in R without requiring further user input. We tested this algorithm with real-world requests for February 2024 and successfully demonstrated its practical applicability.
+
+Admittedly, this approach has its limitations. Primarily, the use of the Monte Carlo method necessitates a large number of repeated iterations, which can be computationally demanding and time-consuming. Even with a multi-core parallel computing algorithm, completing the full set of iterations for this project on an entry-level 2018 MacBook Pro took approximately 72 hours. While it may be argued that manual roster creation would not take 72 hours, employing this algorithmic approach liberates time that could be better spent on clinical duties. Moreover, the use of more powerful devices and processors could significantly decrease the computation time. Besides computation time, this approach necessitates a basic familiarity with R on the part of the medical officer responsible for rostering, potentially adding a layer of inertia to its adoption. While the program is designed to be platform-independent, functioning on both Windows and Mac systems, the user must be willing to acquire at least a rudimentary understanding of coding.
+
+The application of computation tools for manpower rostering is certainly not a novel idea. Locally, many hospital departments have collaborated with NUS School of Computing for student projects to tackle various aspect of rostering  
 
 [example 1](https://web.archive.org/web/20240130131935/https://uvents.nus.edu.sg/event/20th-steps/module/IS4250/project/6)
 
 [example 2](https://web.archive.org/web/20240130132101/https://uvents.nus.edu.sg/event/20th-steps/module/IS4250/project/10)
 
 [example 3](https://web.archive.org/web/20240130132756/https://uvents.nus.edu.sg/event/18th-steps/module/IS4250/project/6)
-
-## Conclusion
 
 ## References
