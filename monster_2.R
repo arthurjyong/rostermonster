@@ -25,8 +25,8 @@ updated_mos_request <- call_wr_monster(part_1_output, mos_request)
 # THIS IS THE MOST IMPORTANT VALUE TO CHANGE IN THIS FILE
 # DO NOTE THAT THE num_iteration IS IN MULTIPLE OF each_cycle
 # Meaning if you put 100 x 10000, effectively is 1 million iteration
-num_iteration = 40
-each_cycle = 5000
+num_iteration = 5
+each_cycle = 50
 
 # PARALLEL LOOP
 start_time <- Sys.time()
@@ -123,7 +123,7 @@ shortlisted_indice <- list()
 for (i in ordered_combined_stats_indices){
   temp_tally <- roster_tally(combined_porl2[[i]][combined_porl2[[i]]["AMPM"]=='AM',], mos_list)
   temp_tally <- temp_tally[temp_tally$MO %in% trainee_list,]
-  if (min(temp_tally$T3) >= 10){
+  if (min(temp_tally$T3) >= 10){ # The 10 here indicates that trainee need at least 10 T3 duties on weekdays AM
     shortlisted_indice <- unlist(c(shortlisted_indice, i))
     if (length(shortlisted_indice) >= 5) {break}
   }

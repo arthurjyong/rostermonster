@@ -13,10 +13,10 @@ first_day_postcall <- excel_2_fdpc("input.xlsx")
 cumulative_callpoints <- excel_2_callpoints("input.xlsx")
 
 # THIS IS THE MOST IMPORTANT VALUE TO CHANGE IN THIS FILE
-# DO NOTE THAT THE NUM_ITERATION IS IN MULTIPLE OF each_cycle
+# DO NOTE THAT THE num_iteration IS IN MULTIPLE OF each_cycle
 # Meaning if you put 100 x 10000, effectively is 1 million iteration
-num_iteration = 200
-each_cycle = 10000
+num_iteration = 10
+each_cycle = 100
 
 # PARALLEL Loop
 start_time <- Sys.time()
