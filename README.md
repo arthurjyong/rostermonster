@@ -1,107 +1,67 @@
 # Project Roster Monster
-An open source R-based algorithm for SKH CVM MO rostering using Monte Carlo simulation. This is an ongoing draft.
+Project Roster Monster – Development of a Computational Tool for Efficient Healthcare Rostering 
+
+
+
+Arthur Yong<sup>1</sup>, Ruan Xucong<sup>1</sup>, Yeo Si Yong<sup>2</sup>, *Angela S. Koh<sup>1,3</sup>, Daniel Chong<sup>1,3</sup>
+
+
+
+<sup>1</sup>Department of Cardiology, National Heart Centre Singapore, 5 Hospital Drive 169609, Singapore
+
+<sup>2</sup>Lee Kong Chian School of Medicine, Nanyang Technological University, 11 Mandalay Road 308232, Singapore
+
+<sup>3</sup>Duke-NUS Medical School, 8 College Road 169857, Singapore
+
+
+Address for correspondence:
+*Angela S. Koh (angela.koh.s.m@singhealth.com.sg)
+
 
 ## Abstract
-Rostering medical officers (MOs) effectively is essential for maintaining operational efficiency and employee satisfaction in healthcare settings. Traditional manual rostering is an inefficient process that often leads to inequitable workloads and reduced morale among staff. To address these challenges, we developed "Roster Monster," an open-source, R-based algorithm utilizing Monte Carlo simulations to optimize on-call and duty rosters. This algorithm automatically generates multiple roster configurations, considering individual MO requests and departmental requirements to ensure fair workload distribution and promote continuity of care. Implemented for the Department of Cardiology at Sengkang General Hospital, Singapore, the algorithm generated two million potential on-call rosters and 200,000 duty rosters for February 2024. From these, we selected the most equitable roster that also best maintained continuity of care, demonstrating significant enhancements in rostering efficiency and fairness. The project underscores the transformative potential of computational tools in healthcare administration, offering substantial benefits for managing workflows and enhancing staff welfare.
+**Objective**: Effective rostering of junior doctors such as residents or medical officers (MOs) is essential for maintaining operational efficiency and employee satisfaction in healthcare. For decades, hospital departments perform clinical rostering of junior doctors manually, a highly inefficient practice that often leads to inequitable workloads and morale among staff. 
 
-## Introduction
 
-Rostering medical officers (MOs) is a crucial yet laborious task within clinical departments at public hospitals. Often, one or two MOs are assigned the unenviable title of "roster monsters," responsible for this duty. These "roster monsters" must orchestrate everyone's on-call schedules and team assignments. Unfortunately, crafting a roster that accommodates all requests is an immensely time-consuming endeavor. Moreover, not all "roster monsters" equitably distribute the workload [1], inevitably impacting the morale and psychological well-being of everyone involved.
+**Materials and Methods**: To address these challenges, we developed "Roster Monster," an open-source, R-based algorithm utilizing Monte Carlo simulations to create night call and daytime duty rosters. This algorithm was designed and modelled against the needs of a tertiary high volume cardiology centre.
 
-The common challenges associated with rostering can be categorized into two main groups: MO requests and departmental requests. MO requests encompass leave requests, on-call requests, block-call preferences, and weekend-duty preferences. Conversely, departments often seek minimal changes in MO teams to ensure continuity of care, distribute the workload evenly among MOs, and prioritize certain duties for trainees over non-trainees. Furthermore, additional implicit requests may emerge from these constraints, such as avoiding on-call duty before scheduled leave, allowing on-call duty after a half-day morning leave, managing staffing for post-call vacancies, assigning weekend duties to MOs before and after on-call shifts on weekends, and achieving a balanced weekend duty allocation. These factors introduce further complexities to the rostering process, diverting the time and energy of "roster monsters" away from clinical work.
 
-At its core, rostering is a mathematical challenge, often offering multiple possible solutions. Monte Carlo methods offer a means to identify the optimal solution from various possibilities simulated by a mathematical model. In the context of roster generation, an algorithm that considers various rostering constraints can be used to randomly generate multiple mathematically valid rosters for consideration before a final roster is determined.
+**Results**: The algorithm generated two million potential night call and 200,000 daytime duty rosters for a specified month. This algorithm automatically generates multiple roster configurations, customizing factors including staff requests, departmental requirements for training, equitable workload while ensuring continuity of patient care. A machine generated calibrator was developed to allow for selection of the most equitable roster.
 
-In this project, we have developed an R-based algorithm that leverages Monte Carlo methods to generate and optimize on-call rosters and duty rosters for our department's MOs. We applied this algorithm to MOs' requests for February 2024, generating two million mathematically possible on-call rosters and 200,000 duty rosters based on the selected on-call rosters. Subsequently, we analyzed the generated rosters, identifying those that align with the department's clinical service needs. We have successfully demonstrated the feasibility of this approach for automated roster generation, showcasing its potential to significantly enhance departmental workflow and efficiency.
+
+**Discussion and Conclusion**: This work underscores the transformative potential of computational tools in healthcare administration, offering substantial benefits for managing workflows optimized for healthcare delivery while balancing staff welfare
+
+
+## BACKGROUND AND SIGNIFICANCE
+
+Rostering junior doctors including residents in training and medical officers (MOs) is a crucial yet laborious task within clinical departments. Most departments assign chief residents or team leads the unenviable task of being "roster monsters", responsible for this duty of designing rosters every month. Apart from individual doctors’ personal requests which determine level of staff wellness, these "roster monsters" need to coordinate across different team assignments in the day, such that training requirements are also adhered to. Conceivably, crafting a roster that accommodates most, if not all, requests is an immensely difficult and time-consuming endeavour. This contributes to the delayed release of rosters, potentially exacerbating physician burnout[1], which is linked to lower quality patient care, decreased patient satisfaction, and may even compromise patient safety[2].
+
+There are two main challenges associated with rostering: MO requests and departmental requests. MO requests encompass leave requests, night call requests, block-call preferences, and weekend-duty preferences. Conversely, departments often seek minimal changes in MO teams to ensure continuity of care, distribute the workload evenly among MOs, and prioritize certain duties for trainees over non-trainees. Furthermore, additional implicit requests may emerge from these constraints, such as avoiding night call duty before scheduled leave, allowing night call duty after a half-day morning leave, managing staffing for post-call vacancies, assigning weekend duties to MOs before and after night call on weekends, and achieving a balanced weekend duty allocation. These factors introduce further complexities to the rostering process, diverting the time and energy of "roster monsters" away from their own clinical training needs.
+
+At its core, rostering is a mathematical challenge, often offering multiple possible solutions. Monte Carlo methods offer a means to identify the optimal solution from various possibilities simulated by a mathematical model. In the context of roster generation, an algorithm that considers various rostering constraints can be used to randomly generate multiple mathematically valid rosters for consideration before a final roster is determined. 
+
+## OBJECTIVE
+
+In this project, we have developed an R-based algorithm that leverages Monte Carlo methods to generate and optimize night call and daytime duty rosters for our department's MOs. We applied this algorithm to MOs' requests for a sample month of February 2024, generating two million mathematically possible night call rosters and 200,000 daytime duty rosters based on a selected night call roster. Subsequently, we analysed the generated rosters, identifying those that align with the department's clinical service needs, using an automated machine generated calibrating score. We demonstrate the feasibility of this approach for automated roster generation, showcasing its potential to significantly enhance departmental workflow and efficiency.
+
 
 ## Materials and methods
 
 ### Algorithm development
 
-The computational algorithm for Project Roster Monster was developed in [R](https://www.r-project.org/), and its source code has been made available on GitHub under an open-source license. For the real-world feasibility evaluation of this approach, we used MO requests for the month of February 2024, which are included as a sample in the 'input.xlsx' file. To maintain confidentiality, the names of MOs have been redacted.
+The computational algorithm for Project Roster Monster was developed in R, and its source code has been made available on GitHub under an open-source license. For the real-world feasibility evaluation of this approach, we used MO requests for the month of February 2024, which are included as a sample in the 'input.xlsx' file. To maintain confidentiality, the names of MOs have been redacted.
 
 ### Manpower distribution
 
-The algorithm was tailored to meet the manpower requirements of the Department of Cardiology at Sengkang General Hospital, Singapore. Within the department, ward duties are divided among three teams. Teams 1 and 2 are responsible for patients in general wards, while Team 3 handles patients in high dependency or coronary care units. On weekdays, each team comprises two MOs, while weekends and public holidays have one MO assigned to each team.
+The algorithm was tailored to meet the manpower requirements of a satellite department of the National Heart Centre Singapore – a high volume tertiary cardiology centre that handles 120,000 outpatients, 9,000 procedures, and 10,000 inpatients annually. Within the department, ward duties are divided among three teams. Teams 1 and 2 are responsible for patients in general wards, while Team 3 handles patients in high dependency or coronary care units. On weekdays, each team comprises two MOs, while weekends and public holidays have one MO assigned to each team.
 
-Additionally, a runner system is in place, where extra MOs function as 'runners' to provide assistance to the rounding teams. One of the runners is responsible for assisting with the afternoon exercise stress echocardiogram (TTE) clinic on weekdays. During weekends, there is always at least one runner available to assist with rounding duties. To fulfill the manpower needs for weekend rounds, each weekend or public holiday would need at least four MOs on rounding duties. There is no afternoon duties on weekends and public holidays.
+Additionally, a runner system is in place, where extra MOs function as 'runners' to provide assistance to the rounding teams. One of the runners is responsible for assisting with the afternoon exercise stress echocardiogram (TTE) clinic on weekdays. As the designated MO would assist duty consultant in performing the stress TTE, this duty offers an excellent opportunity for MOs to gain more in-depth knowledge about TTE procedures.
 
-Furthermore, there is a designated MO on-call, essentially covering overnight shifts. Post-call, the MO is required to run the same-day admission (SDA) clinic the following morning and take the afternoon off as 'post-call' on weekdays. In general, the department would receive ten MOs during each rotation cycle, with a maximum allowance of two MOs on leave at any given time. The manpower requirement is summarized into Table 1.
+During weekends, there is always at least one runner available to assist with rounding duties. To fulfil the manpower needs for weekend rounds, each weekend or public holiday would need at least four MOs on rounding duties. There is no afternoon duties on weekends and public holidays.
 
-Table 1: Summary of the SKH Department of Cardiology's manpower requirements, detailing the number of MOs assigned to general wards (T1 and T2) , high dependency units / coronary care units (T3), and clinics during weekdays, weekends, and public holidays.
+Furthermore, there is always a designated MO for night call, essentially covering the overnight shift. Post-call, the MO is required to run the same-day admission (SDA) clinic the following morning and take the afternoon off as 'post-call' on weekdays. In the SDA clinic, MOs review and prepare patients for scheduled elective procedures.
 
-![Table 1](/readme/table1.png)
+In general, the department would receive ten MOs during each rotation cycle, with a maximum allowance of two MOs on leave at any given time. The manpower requirement is summarized into Table 1.
 
+**Table 1**: Summary of the cardiology department's manpower requirements, detailing the number of MOs assigned to general wards (T1 and T2) , high dependency units / coronary care units (T3), and clinics during weekdays, weekends, and public holidays.
+![Table 1](/figures/table_1.png)
 
-## Results
-
-### Design of algorithm
-
-The algorithm used in this project was specifically developed for this project and consists of two major parts. The first part is designed to generate call rosters, while the second part completes the full duty roster (Figure 1). Initially, the algorithm requires an input file in the form of a Microsoft Excel document. It can then generate any number of on-call rosters for subsequent selection. Once a specific call roster is selected, it is fed into the second part of the algorithm to generate a complete duty roster.
-
-![Figure 1](/readme/figure1.png)
-_Figure 1: The schematic illustrates the two-part algorithm design for roster generation. Part I involves the creation of on-call rosters, and Part II consists of generating full duty rosters based on the shortlisted on-call rosters._
-
-### Generation of on-call rosters
-
-Within the input Excel document, users must provide MO names, the duration of rostering, and various requests from the MOs on the first sheet (Figure 2A). To enhance rostering accuracy, a list of public holidays can be added on the second sheet (Figure 2B). For a fairer distribution of call duties among MOs, cumulative call points can be included based on departmental needs (Figure 2C). Additionally, any MO under a specific training track can be specified on the fourth sheet (Figure 2D), as certain duties may be prioritized for these trainees.
-
-![Figure 2](/readme/figure2.png)
-_Figure 2: Screenshots of the Excel spreadsheet used for input data. (A) Sheet 1 lists MO names, roster dates, and their requests, (B) Sheet 2 marks public holidays, (C) Sheet 3 details cumulative call points for fairness in on-call duty allocation (optional), and (D) Sheet 4 identifies MOs under any training track (optional), all of which are considered by the algorithm in roster generation._
-
-The logical flow of the first part of the roster generation process is detailed in Figure 3. This part handles the MO requests and initial roster setup. Initially, the algorithm generates an empty roster using the MO names and input dates. It also incorporates the list of public holidays to ensure accurate scheduling. Next, the algorithm would go through each day and try to fulfill MO requests as completely as possible. The types of requests considered include various leaves (annual, medical, and training), call and no-call preferences, and preferences for working or not working on specific weekends. After addressing these requests, the algorithm reassesses each date. It randomly assigns MOs who are mathematically eligible, excluding those on leave or who have requested not to work on specific weekends. The assignment process also factors in post-call conditions. MOs who were on call the previous night, and "post-post-call" conditions for MOs who were on call two nights earlier, are also excluded from consideration.
-
-![Figure 3](/readme/figure3.png)
-_Figure 3: This schematic outlines the first part of the algorithm process, which randomly generates on-call rosters based on MO names, dates, and requests. The process can be repeated as many time as needed. In this project, we generated two millions different on-call rosters to ensure a broad range of coverage._
-
-In this project, we repeated the generation of call rosters two million times (Figure 4). For each call, we assigned specific call points to manage the distribution of duties. We categorized the calls into four groups: Monday-to-Thursday calls, Friday calls, Saturday calls, and Sunday calls. To accommodate variations such as public holidays, we established the conditions of these calls relative to ordinary working days and holidays/weekends (Figure 4, top right). This approach ensures that the algorithm's outputs can be generalized across different types of days, maintaining fairness and efficiency in duty allocation.
-
-The adaptation of the call point system allowed us to numerically examine the call burden of each MO. By calculating the total call points of everyone, as well as the standard deviation of call points, we can infer the call burden and the fairness of duty distribution. Since our department routinely generates the roster by calendar month, while the total duration of each MO posting usually lasts three to six months, the algorithm can also optionally include cumulative call points (Figure 4, bottom left). This helps in factoring in the total call burden to date, leading to an even fairer distribution of workload across the entire posting duration.
-
-Manually generating even a single on-call roster can be time-consuming. In contrast, the algorithm developed for this project can rapidly generate any mathematically possible roster. For example, running the algorithm on a 2018 entry-spec MacBook Pro takes less than one second to produce a call roster. While this demonstrates significant efficiency, the resulting rosters are often not ideal. For instance, some MOs might end up covering more call duties than others. This limitation, however, can be overcome by employing the Monte Carlo approach, which involves repeating the roster generation multiple times. By doing so, we can select the most suitable roster from a broader range of generated options. With the two million call rosters generated for this project, the standard deviation of call points can be calculated for each roster and plotted on a histogram (Figure 4, bottom right). Generally, we favor rosters on the leftmost tail-end, with a low standard deviation suggesting a fairer distribution of duties. Again, cumulative call points can be optionally included for the selection of the call roster.
-
-![Figure 4](/readme/figure5.png)
-_Figure 4: (Top left) A representative screenshot from the generated on-call rosters. (Top right) A table illustrating the assignment of call points to each call, which can be adjusted based on departmental needs. (Bottom left) Calculation of total call points for each MO is done in every roster, with lower standard deviation (SD) values indicating a fairer distribution of call duties. Previous callpoint can be factored in for analysis as needed. (Bottom right) The histogram of SD values from the two million generated rosters is also presented._
-
-### Generation of full rosters
-
-Once an on-call roster is selected from the numerous iterations, it can be fed into the second part of the algorithm for full roster generation. Based on the selected call rosters, we divide all ordinary working days into AM and PM duties, while holidays and weekends are limited to AM duties only. Post-call MOs are entitled to take PM duties off on weekdays and are automatically assigned to manage the same-day-admission (SDA) during post-call AMs on weekdays. These assignments are automatically processed once the on-call roster is integrated into the algorithm.
-
-In our department, the rostering of clinical duties is based on calendar weeks. We initiate the rostering process by dividing the weeks into Monday-to-Sunday cycles (Figure 5). Following this, we randomly assign MOs to clinical teams according to the departmental manpower requirements, as previously detailed in Table 1. For weekend duties, we strive to equalize the duty burden across the manpower pool while aiming to accommodate as many weekend work or off requests from MOs as possible. Meanwhile, we prioritize weekend duties for MOs who are going on-call or post-call. Similar to the generation of the on-call roster, we can repeat the second part of the rostering process as many times as needed.
-
-![Figure 5](/readme/figure4.png)
-_Figure 5: The second part of the algorithm design assigns team duties to the shortlisted on-call rosters while considering MO leave and weekend requests. The process can be repeated as many time as needed. In this project, we repeated the process 200,000 times to select the most equitable and practical final roster._
-
-In this project, we repeated the allocation of the full roster 200,000 times to cover a broad range of possibilities (Figure 6A). Each full roster was then tallied according to the duty types assigned to each MO (Figure 6B). This allowed us to calculate the standard deviation among the duty counts, where a lower standard deviation indirectly signifies a fairer distribution of workload types among the MOs. We also plotted the standard deviations calculated from all 200,000 rosters into a histogram; similar to previous analyses, we favored the leftmost tail-end, which signifies a fairer distribution (Figure 6C).
-
-![Figure 6](/readme/figure6.png)
-_Figure 6: (A) A representative screenshot from one of the 200,000 full rosters generated by the algorithm. (B) The tally of MO duties from each roster facilitates further analysis, where standard deviation (SD) can be calculated for more equitable distribution of duties. This analysis can also be used to ensure compliance with departmental training requirements, such as mandating a minimum number of Team 3 (HD/ICU) duties for trainees. (C) The histogram of SD values from the 200,000 generated full rosters is presented._
-
-Ensuring a fair distribution of workload among MOs is crucial, yet it may not always be the top priority when planning the clinical roster. In our department, team members, including registrars and consultants, are rotated to specific teams weekly. Frequent changes of MOs — the junior members responsible for carrying out plans — could harm the continuity of care. Although the standard deviation (SD) calculation aids in achieving a fairer workload, an additional metric is necessary to gauge the frequency of manpower changes. Thus, we introduce the Average MO Count (AMOC), which measures the average number of MOs in a team, as depicted in Figure 7 (left). Theoretically, it can range from 2 to 12, with a lower value indicating fewer changes in MOs and, consequently, greater continuity of care. We calculated the AMOC for all 200,000 rosters we generated and plotted these values in a histogram (Figure 7, right), favoring the leftmost tail-end, which represents less frequent turnover of MO manpower week-over-week.
-
-![Figure 7](/readme/figure7.png)
-_Figure 7: (Left) The concept of Average MO Count (AMOC) is demonstrated, showing the number of MOs covering each team during a typical week. A lower AMOC value indicates reduced turnover, promoting continuity of care. (Right) The histogram of AMOC values from the 200,000 generated full rosters is presented._
-
-With both SD and AMOC metrics at our disposal, we can more accurately appraise each automatically generated roster for implementation. Since SD and AMOC values can be derived independently for each full roster, it allows users to decide which metric should carry more weight in their decision-making process. To illustrate the distribution of SD and AMOC across the 200,000 rosters generated, we plotted them on a scatter plot, using a random sample of 3,000 values for better visibility (Figure 8). Ideally, rosters towards the bottom-left corner are sought after, as they reflect a more equitable workload distribution and better continuity of care.
-
-<p align="center">
-<img src="/readme/figure8.png" alt="Figure 8" width="650">
-</p>
-
-_Figure 8: Scatter plot displaying the relationship between Standard Deviation (SD) and Average MO Count (AMOC) for a subset of full rosters. This graph represents a random sample of 3,000 rosters out of the 200,000 generated. The sampling was done for greater visibility._
-
-## Discussion
-
-Rostering duties, while laborious and time-consuming, are essential for the smooth operation of any clinical department. Typically, MO rostering is assigned to one of the medical officers, which can significantly distract them from their primary responsibilities. Furthermore, this task usually recurs monthly instead of being an one-off event, mostly because of the impracticality to expect the entire team to schedule their absences and leave three to six months in advance. Adjustments to the call roster to accommodate urgent leave can also lead to major shifts in call burden and call point distribution, sometimes requiring further alterations to subsequent calls to ensure a fair workload distribution. In this project, we custom-built a rostering algorithm aimed at automating the process to the greatest extent possible. Our goal was to craft an algorithm that is user-friendly, which led us to select an Excel document as the sole input file. All subsequent calculations are performed in R without requiring further user input. We tested this algorithm with real-world requests for February 2024 and successfully demonstrated its practical applicability.
-
-Admittedly, this approach has its limitations. Primarily, the use of the Monte Carlo method necessitates a large number of repeated iterations, which can be computationally demanding and time-consuming. Even with a multi-core parallel computing algorithm, completing the full set of iterations for this project on an entry-level 2018 MacBook Pro took approximately 72 hours. While it may be argued that manual roster creation would not take 72 hours, employing this algorithmic approach liberates time that could be better spent on clinical duties. Moreover, the use of more powerful devices and processors could significantly decrease the computation time. Besides computation time, this approach necessitates ones to step out of comfort zone and uses R programme, which may not be comfortable for some MOs, potentially adding a layer of inertia to its adoption. While the program is designed to be platform-independent, functioning on both Windows and Mac systems, the user must be willing to acquire at least a rudimentary understanding of coding in case of troubleshooting.
-
-The use of the Monte Carlo method was critical in this project, as it allows for the numerical comparison of various rosters, providing a powerful tool to optimize roster planning. Without such computational tools, manual rostering often struggles to satisfy diverse requests while ensuring a fair distribution of workload. Additionally, the implementation of a call points system, although beneficial, is typically limited; systems with high granularity pose a significant challenge for roster planners in balancing the distribution of duties while accommodating various requests and constraints. In this project, we demonstrated the power of the Monte Carlo method to achieve what seems impossible — by considering thousands to millions of mathematically permissible combinations, the ultimate roster we generate is very likely superior to any manually planned roster. This advantage provides a compelling incentive to automate the rostering process, going beyond mere workflow efficiency. 
-
-The use of computational tools in manpower rostering is not new. Many local hospital departments have engaged with students from the NUS School of Computing to address various rostering challenges [2,3,4]. There are also numerous commercial software solutions designed to simplify rostering tasks. However, most of these solutions aim to assist in rostering rather than to fully automate the process, as our project attempts. There are several reasons for this. Full automation typically requires detailed customization, which may not be commercially viable for software companies to provide for each department's specific needs. Furthermore, the investment in time and resources required for clinical departments to develop their autonomous rostering tools with external developers would likely exceed the costs of allocating the task to a medical officer or administrative staff. By releasing this open-source algorithm, we aim to support future initiatives toward workflow automation by clinicians with basic coding proficiency. We also hope that the structural design employed in this algorithm could serve as a reference for future automated rostering attempts, including those developed in other languages such as Python. 
-
-## References
-[1](https://web.archive.org/web/20090304002820/https://practicality.wordpress.com/2009/02/28/the-roster-monster/)
-[2](https://web.archive.org/web/20240130131935/https://uvents.nus.edu.sg/event/20th-steps/module/IS4250/project/6)
-[3](https://web.archive.org/web/20240130132101/https://uvents.nus.edu.sg/event/20th-steps/module/IS4250/project/10)
-[4](https://web.archive.org/web/20240130132756/https://uvents.nus.edu.sg/event/18th-steps/module/IS4250/project/6)
