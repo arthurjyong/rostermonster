@@ -25,9 +25,6 @@ Users can review the distributions of these metrics and select rosters that best
 - `input.xlsx`  
   Example Excel input file. Contains the expected sheet structure for MO names, dates, requests, public holidays, previous call points and trainee flags (with names anonymised).
 
-- `figures/`  
-  Example plots and/or scripts used to produce figures for the accompanying manuscript.
-
 ---
 
 ## Basic usage
